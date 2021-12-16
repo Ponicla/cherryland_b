@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const fs  = require('fs');
 
-
 const router = Router();
 
+const { test } = require('../controllers/index.controller');
+const { get_usuarios } = require('../controllers/usuarios/usuarios.js');
 
 const sort_array = (list, prop_1, prop_2) => {
     return list.sort(function (a, b) {
@@ -22,6 +23,10 @@ const sort_array = (list, prop_1, prop_2) => {
         return 0;
       });
 }
+ 
+router.get('/test', test);
+router.get('/get_usuarios', get_usuarios);
+
 
 router.get('/', (req, res) => {
     res.send('Cherryland | backend');
@@ -60,19 +65,11 @@ router.post('/files', async (req, res) => {
     });
 }); 
 
-/* router.post('/file', function (req, res) {
-    var { sub_route, name } = req.body;
-    var filePath = "C:/Users/usuario/Desktop/Juan/Cherryland/"+sub_route+'/'+name;
-    open(filePath);
-    res.json(filePath);
-}); */
-
 router.post('/file', function (req, res) {
     var { sub_route, name } = req.body;
     var filePath = "C:/Users/usuario/Desktop/Juan/Cherryland/"+sub_route+'/'+name;
     // open(filePath);
     res.sendFile(filePath);
 });
-
 
 module.exports = router;
