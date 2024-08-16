@@ -38,11 +38,11 @@ router.post('/files', async (req, res) => {
     if(sub_route.length > 0){
         sub_route = sub_route+'/';
     }
-    const route = 'C:/Users/usuario/Desktop/Juan/Cherryland/'+sub_route;
+    const route = '//192.168.0.96/Cherryland/'+sub_route;
     fs.readdir(route, (error, files) => {
         if(error){ 
             throw error
-        }else{
+        }else{ 
             if(files.length > 0){
                 for (let i = 0; i < files.length; i++) {
                     var element = files[i];
@@ -67,8 +67,8 @@ router.post('/files', async (req, res) => {
 
 router.post('/file', function (req, res) {
     var { sub_route, name } = req.body;
-    var filePath = "C:/Users/usuario/Desktop/Juan/Cherryland/"+sub_route+'/'+name;
-    // open(filePath);
+    var filePath = "//192.168.0.96/Cherryland/"+sub_route+'/'+name;
+    // open(filePath); 
     res.sendFile(filePath);
 });
 

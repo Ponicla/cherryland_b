@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 var mssql = require("mssql");
-
+var http = require('http');
 
 /* Variables de conexion base de datos */
 var config = {
@@ -46,5 +46,12 @@ var connection = mssql.connect(config, function (err, res ) {
 		app.listen(app.get('port'), function(){
 			console.log('Api rest cherryland corriendo' + fecha + ' a las '+ hora);
 		});
+        /* http.createServer(function(req, res) {
+            res.writeHead(200, {
+               'Content-Type': 'text/plain'
+            }); 
+            res.end('Hello World\n');
+         }).listen(app.get('port'), "192.168.0.96");
+         console.log('Server running at http://192.168.0.96:'+app.get('port')+'/'); */
 	}
 });
